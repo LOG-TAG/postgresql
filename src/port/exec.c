@@ -190,10 +190,11 @@ find_my_exec(const char *argv0, char *retpath)
 				test_path[MAXPGPATH];
 	char	   *path;
 
+// TODO: replace with Android's E()
 	if (!getcwd(cwd, MAXPGPATH))
 	{
-		log_error(_("could not identify current directory: %s"),
-				  strerror(errno));
+//		log_error(_("could not identify current directory: %s"),
+//				  strerror(errno));
 		return -1;
 	}
 
@@ -210,8 +211,8 @@ find_my_exec(const char *argv0, char *retpath)
 
 		if (validate_exec(retpath) == 0)
 			return resolve_symlinks(retpath);
-
-		log_error(_("invalid binary \"%s\""), retpath);
+//TODO: replace with Android's E()
+//		log_error(_("invalid binary \"%s\""), retpath);
 		return -1;
 	}
 
@@ -260,14 +261,16 @@ find_my_exec(const char *argv0, char *retpath)
 				case -1:		/* wasn't even a candidate, keep looking */
 					break;
 				case -2:		/* found but disqualified */
-					log_error(_("could not read binary \"%s\""),
-							  retpath);
+// TODO: replace with Android's E()
+//					log_error(_("could not read binary \"%s\""),
+//							  retpath);
 					break;
 			}
 		} while (*endp);
 	}
 
-	log_error(_("could not find a \"%s\" to execute"), argv0);
+// TODO: replace with Android's E()
+//	log_error(_("could not find a \"%s\" to execute"), argv0);
 	return -1;
 }
 
@@ -306,8 +309,9 @@ resolve_symlinks(char *path)
 	 */
 	if (!getcwd(orig_wd, MAXPGPATH))
 	{
-		log_error(_("could not identify current directory: %s"),
-				  strerror(errno));
+// TODO: replace with Android's E()
+//		log_error(_("could not identify current directory: %s"),
+//				  strerror(errno));
 		return -1;
 	}
 
@@ -322,7 +326,8 @@ resolve_symlinks(char *path)
 			*lsep = '\0';
 			if (chdir(path) == -1)
 			{
-				log_error(_("could not change directory to \"%s\""), path);
+// TODO: replace with Android's E()
+//				log_error(_("could not change directory to \"%s\""), path);
 				return -1;
 			}
 			fname = lsep + 1;
@@ -337,7 +342,8 @@ resolve_symlinks(char *path)
 		rllen = readlink(fname, link_buf, sizeof(link_buf));
 		if (rllen < 0 || rllen >= sizeof(link_buf))
 		{
-			log_error(_("could not read symbolic link \"%s\""), fname);
+// TODO: replace with Android's E()
+//			log_error(_("could not read symbolic link \"%s\""), fname);
 			return -1;
 		}
 		link_buf[rllen] = '\0';
@@ -349,8 +355,9 @@ resolve_symlinks(char *path)
 
 	if (!getcwd(path, MAXPGPATH))
 	{
-		log_error(_("could not identify current directory: %s"),
-				  strerror(errno));
+// TODO: replace with Android's E()
+//		log_error(_("could not identify current directory: %s"),
+//				  strerror(errno));
 		return -1;
 	}
 	join_path_components(path, path, link_buf);
@@ -358,7 +365,8 @@ resolve_symlinks(char *path)
 
 	if (chdir(orig_wd) == -1)
 	{
-		log_error(_("could not change directory to \"%s\""), orig_wd);
+// TODO: replace with Android's E()
+//		log_error(_("could not change directory to \"%s\""), orig_wd);
 		return -1;
 	}
 #endif   /* HAVE_READLINK */
@@ -583,8 +591,10 @@ pclose_check(FILE *stream)
 		perror("pclose failed");
 	}
 	else if (WIFEXITED(exitstatus))
-		log_error(_("child process exited with exit code %d"),
-				  WEXITSTATUS(exitstatus));
+// TODO: replace with Android's E()
+		printf("");
+//		log_error(_("child process exited with exit code %d"),
+//				  WEXITSTATUS(exitstatus));
 	else if (WIFSIGNALED(exitstatus))
 #if defined(WIN32)
 		log_error(_("child process was terminated by exception 0x%X"),
@@ -596,15 +606,18 @@ pclose_check(FILE *stream)
 		snprintf(str, sizeof(str), "%d: %s", WTERMSIG(exitstatus),
 				 WTERMSIG(exitstatus) < NSIG ?
 				 sys_siglist[WTERMSIG(exitstatus)] : "(unknown)");
-		log_error(_("child process was terminated by signal %s"), str);
+// TODO: replace with Android's E()
+//		log_error(_("child process was terminated by signal %s"), str);
 	}
 #else
 		log_error(_("child process was terminated by signal %d"),
 				  WTERMSIG(exitstatus));
 #endif
 	else
-		log_error(_("child process exited with unrecognized status %d"),
-				  exitstatus);
+// TODO: replace with Android's E()
+		printf("");
+//		log_error(_("child process exited with unrecognized status %d"),
+//				  exitstatus);
 
 	return -1;
 }

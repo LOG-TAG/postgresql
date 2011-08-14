@@ -87,7 +87,9 @@ static int	des_cipher(const char *in, char *out, long salt, int num_iter);
  * define "B64" to be the declaration for a 64 bit integer.
  * XXX this feature is currently unused, see "endian" comment below.
  */
+#if 0
 #define B64 __int64
+#endif
 
 /*
  * define "LARGEDATA" to get faster permutations, by using about 72 kilobytes
@@ -105,7 +107,9 @@ static int	des_cipher(const char *in, char *out, long salt, int num_iter);
  * Define the "int32_t" type for integral type with a width of at least
  * 32 bits.
  */
+#if 0
 typedef int int32_t;
+#endif
 
 /* ==================================== */
 

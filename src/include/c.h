@@ -850,6 +850,10 @@ extern int	fdatasync(int fildes);
 #define NON_EXEC_STATIC static
 #endif
 
+#ifndef DWORD
+#define DWORD int
+#endif
+
 /* /port compatibility functions */
 #include "port.h"
 

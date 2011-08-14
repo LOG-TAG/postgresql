@@ -2360,31 +2360,32 @@ printQuery(const PGresult *result, const printQueryOpt *opt, FILE *fout, FILE *f
 	printTableCleanup(&cont);
 }
 
-
+// TODO: this will never be fixed in Android
 void
 setDecimalLocale(void)
 {
-	struct lconv *extlconv;
+	//struct lconv *extlconv;
 
-	extlconv = localeconv();
+	//extlconv = localeconv();
 
-	if (*extlconv->decimal_point)
-		decimal_point = pg_strdup(extlconv->decimal_point);
-	else
+//	if (*extlconv->decimal_point)
+//		decimal_point = pg_strdup(extlconv->decimal_point);
+//	else
 		decimal_point = ".";	/* SQL output standard */
-	if (*extlconv->grouping && atoi(extlconv->grouping) > 0)
-		grouping = pg_strdup(extlconv->grouping);
-	else
+//	if (*extlconv->grouping && atoi(extlconv->grouping) > 0)
+//		grouping = pg_strdup(extlconv->grouping);
+//	else
 		grouping = "3";			/* most common */
 
 	/* similar code exists in formatting.c */
-	if (*extlconv->thousands_sep)
-		thousands_sep = pg_strdup(extlconv->thousands_sep);
-	/* Make sure thousands separator doesn't match decimal point symbol. */
-	else if (strcmp(decimal_point, ",") != 0)
-		thousands_sep = ",";
-	else
-		thousands_sep = ".";
+//	if (*extlconv->thousands_sep)
+//		thousands_sep = pg_strdup(extlconv->thousands_sep);
+//	/* Make sure thousands separator doesn't match decimal point symbol. */
+//	else if (strcmp(decimal_point, ",") != 0)
+//		thousands_sep = ",";
+//	else
+//		thousands_sep = ".";
+	thousands_sep = "";
 }
 
 /*

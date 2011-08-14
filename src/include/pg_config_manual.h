@@ -146,7 +146,7 @@
  * here's where to twiddle it.  You can also override this at runtime
  * with the postmaster's -k switch.
  */
-#define DEFAULT_PGSOCKET_DIR  "/tmp"
+#define DEFAULT_PGSOCKET_DIR  "/var/run/postgresql"
 
 /*
  * The random() function is expected to yield values between 0 and
