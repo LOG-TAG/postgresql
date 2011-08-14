@@ -5,6 +5,7 @@ LOCAL_PATH:= $(call my-dir)
 include $(CLEAR_VARS)
 include $(LOCAL_PATH)/Config.mk
 
+LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE:= libpq
 # only heavily used modules should only prelinked
 LOCAL_PRELINK_MODULE:= false

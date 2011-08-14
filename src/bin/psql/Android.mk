@@ -6,7 +6,7 @@ include $(CLEAR_VARS)
 include $(LOCAL_PATH)/Config.mk
 
 LOCAL_MODULE:= psql
-
+LOCAL_MODULE_TAGS := optional
 LOCAL_ARM_MODE:= ARM
 
 LOCAL_REQUIRED_MODULES:= libssl libcrypto libpq libz \
